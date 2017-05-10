@@ -2,30 +2,19 @@
 abstract class Price {
 	abstract int getPriceCode();
 
-	double getCharge(Movie movie, int daysRent) {
-		double result = 0;
-		switch (movie.getPriceCode()) {
-		case Movie.REGULAR:
-			result += 2;
-			if (daysRent > 2)
-				result += (daysRent - 2) * 1.5;
-			break;
-		case Movie.NEW_RELEASE:
-			result += daysRent * 3;
-			break;
-		case Movie.CHILDRENS:
-			result += 1.5;
-			if (daysRent > 3)
-				result += (daysRent - 3) * 1.5;
-			break;
-		}
-		return result;
-	}
+	abstract double getCharge(int daysRent);
 }
 
 class ChildrensPrice extends Price {
 	int getPriceCode() {
 		return Movie.CHILDRENS;
+	}
+
+	double getCharge(int daysRented) {
+		double result = 1.5;
+		if (daysRented > 3)
+			result += (daysRented - 3) * 1.5;
+		return result;
 	}
 }
 
@@ -33,10 +22,21 @@ class NewReleasePrice extends Price {
 	int getPriceCode() {
 		return Movie.NEW_RELEASE;
 	}
+
+	double getCharge(int daysRented) {
+		return daysRented * 3;
+	}
 }
 
 class RegularPrice extends Price {
 	int getPriceCode() {
 		return Movie.REGULAR;
+	}
+
+	double getCharge(int daysRented) {
+		double result = 2;
+		if (daysRented > 2)
+			result += (daysRented - 2) * 1.5;
+		return result;
 	}
 }

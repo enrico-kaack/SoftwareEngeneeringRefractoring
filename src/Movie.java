@@ -40,7 +40,7 @@ public class Movie {
 	 * @deprecated Use {@link Price#getCharge(Movie,int)} instead
 	 */
 	double getCharge(int daysRent) {
-		return _price.getCharge(this, daysRent);
+		return _price.getCharge(daysRent);
 	}
 
 	int getFrequentRenterPoints(int daysRent) {
