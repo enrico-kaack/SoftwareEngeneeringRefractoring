@@ -43,10 +43,10 @@ public class Movie {
 		return _price.getCharge(daysRent);
 	}
 
+	/**
+	 * @deprecated Use {@link Price#getFrequentRenterPoints(Movie,int)} instead
+	 */
 	int getFrequentRenterPoints(int daysRent) {
-		if ((getPriceCode() == Movie.NEW_RELEASE) && daysRent > 1)
-			return 2;
-		else
-			return 1;
+		return _price.getFrequentRenterPoints(daysRent);
 	};
 }
