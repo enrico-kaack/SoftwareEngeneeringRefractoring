@@ -16,5 +16,24 @@ public class Movie {
     }
     public String getTitle (){
         return title;
-    };
+    }
+	double getCharge(int daysRent) {
+		double result = 0;
+		switch (getPriceCode()) {
+		case Movie.REGULAR:
+			result += 2;
+			if (daysRent > 2)
+				result += (daysRent - 2) * 1.5;
+			break;
+		case Movie.NEW_RELEASE:
+			result += daysRent * 3;
+			break;
+		case Movie.CHILDRENS:
+			result += 1.5;
+			if (daysRent > 3)
+				result += (daysRent - 3) * 1.5;
+			break;
+		}
+		return result;
+	};
 }
